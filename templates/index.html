@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>Book Spine Reader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+        .title-container {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin: 15px;
+        }
+        #statusMessage {
+            opacity: 1;
+            transition: opacity 1.5s;
+            display: none;
+            padding: 10px 15px;
+        }
+
+    </style>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-4">
+    <h1 class="mb-3">Upload a picture of book spines</h1>
+    <p class="text-muted">
+    <ul>
+        <li>Capture between 1 and 8 book spines in one photo.</li>
+        <li>Ensure the lighting is clear and even, avoiding shadows on the spines.</li>
+        <li>Make sure all book titles on the spines are fully visible within the frame.</li>
+        <li>Avoid blurry images; sharpness ensures better text recognition.</li>
+    </ul>
+    </p>
+
+    <form enctype="multipart/form-data" method="post" class="mb-4">
+        <div class="form-group">
+            <input type="file" name="file" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- Display status updates -->
+    <p id="statusMessage" class="alert alert-info" role="alert"></p>
+
+    <h2 class="my-3">Detected Titles:</h2>
+    <div class="title-container border rounded p-3 bg-light">
+        <ul class="list-unstyled">
+            {% for title in titles %}
+            <li>{{ title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

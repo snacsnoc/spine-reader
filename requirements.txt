@@ -1,0 +1,11 @@
+Flask
+gunicorn
+requests
+Werkzeug
+opencv-python
+opencv-python-headless
+betterocr
+Pillow
+Flask-SocketIO
+pyheif
+eventlet
